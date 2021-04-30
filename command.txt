@@ -1,0 +1,29 @@
+1. 
+  sudo iptables -A OUTPUT -p tcp -d 192.168.1.116 --dport 23 -j DROP 
+
+  sudo iptables -A INPUT -p tcp -s 192.168.1.116 --dport 23 -j DROP
+
+  sudo iptables -A OUTPUT -p tcp -d www.facebook.com -j DROP
+
+2.
+  sudo insmod minifw/minifw.ko
+
+  sudo rmmod minifw/minifw.ko
+
+  dmesg | tail -10
+
+3.
+  sudo iptables -A OUTPUT -p tcp--dport 23 -j DROP
+
+  sudo iptables -A OUTPUT -p tcp--dport 80 -j DROP
+
+  ssh -L 8000:192.168.1.117:23 seed@192.168.1.116
+
+  ssh -D 9000 -C seed@192.168.1.116
+
+4.
+  sudo iptables -A OUTPUT -p tcp -d 192.168.1.116 --dport 22 -j DROP 
+
+  sudo iptables -A OUTPUT -p tcp -d 192.168.1.116 --dport 80 -j DROP 
+
+  ssh -R 9000:localhost:22 seed@192.168.1.116
